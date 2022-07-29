@@ -7,7 +7,7 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="income expences API",
+        title="Pizza delivery API",
         default_version='v1',
         description="An api for contact list",
         terms_of_service="https://www.google.com/policies/terms/",
@@ -21,6 +21,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include("authentication.urls")),
+    path('orders/', include("orders.urls")),
     path('', schema_view.with_ui('swagger', cache_timeout=None), name='schema-swagger-ui'),
     path('^redoc', schema_view.with_ui('redoc', cache_timeout=None), name='schema-redoc'),
+    path('auth/', include('djoser.urls.jwt')),
 ]
